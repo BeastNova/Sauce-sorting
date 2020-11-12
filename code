@@ -1,0 +1,49 @@
+minimum = input("Enter Newest Number (before adding new numbers): ")
+sauce = input("Enter Whole List (including new numbers): ")
+question = input("Do you want the item's to be google form ready (yes or no)? ")
+question = question.lower()
+sauce = sauce.split(", ")
+newSauce = []
+
+#v1 just sorts through and makes a list of unique numbers
+i = 0
+while i < len(sauce):
+    t = i + 1
+    while t < len(sauce):
+      if sauce[i] == sauce[t]:
+        del sauce[t]
+      else:
+        t += 1
+    i += 1
+
+#v3 only returns numbers after the specified minimum number
+if minimum != "":
+  minimum = sauce.index(minimum)
+  while minimum < (len(sauce)-1):
+    minimum += 1
+    newSauce.append(sauce[minimum])
+sauce = newSauce
+
+#v2 returns a format for hyperlink in google sheets instead of just the numbers
+if question == "yes":
+  t = -1
+  for i in sauce:
+    t += 1
+    sauce[t]
+    sauce[t] = f'=HYPERLINK("nhentai.net/g/' + i + '/", "' + i + '")'
+
+
+print(""""
+
+
+
+""")
+
+if question.lower() == "yes":
+  print(*sauce, sep = "~ ")
+elif question.lower() == "no":
+  print(*sauce, sep = ", ")
+#prints the list without brackets or quotes and seperates with ~
+
+
+#=HYPERLINK("nhentai.net/g/<number>/", "<number>")
